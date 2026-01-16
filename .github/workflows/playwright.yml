@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout del codigo
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -46,12 +46,10 @@ jobs:
 
       - name: Run Playwright + Serenity JS Tests
         env:
-          LOGIN: ${{ inputs.login || 'Admin'}}
-          PASSWORD: ${{ inputs.password|| 'admin123' }}
+          LOGIN: ${{ inputs.login || 'usuario_default'}}
+          PASSWORD: ${{ inputs.password|| 'pass_default' }}
           TEST_CASE: ${{ inputs.test_case  || '@loginExitoso' }}
         run: |
-          # El comando asume que pasas el caso de prueba como argumento de filtro de Playwright/Serenity
-          # Ajusta "npm test" según tu script en package.json
           npm test -- --grep "$TEST_CASE"
 
       - name: Generate Serenity BDD Report
