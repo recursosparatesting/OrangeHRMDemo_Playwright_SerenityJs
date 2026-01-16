@@ -14,9 +14,15 @@ on:
         required: true
         default: 'admin123'
       test_case:
+        type: choice
         description: 'Caso de prueba específico (dejar vacío para todos)'
-        required: false
+        required: true
         default: '@loginExitoso'
+        options:
+          - '@loginExitoso'
+          - '@mensajeError'
+          - '@logout'
+
 
 jobs:
   test:
@@ -40,9 +46,9 @@ jobs:
 
       - name: Run Playwright + Serenity JS Tests
         env:
-          LOGIN: ${{ github.event.inputs.login || 'Admin' }}
-          PASSWORD: ${{ github.event.inputs.password || 'admin123' }}
-          TEST_CASE: ${{ github.event.inputs.test_case  || '@loginExitoso' }}
+          LOGIN: ${{ github.event.inputs.login }}
+          PASSWORD: ${{ github.event.inputs.password }}
+          TEST_CASE: ${{ github.event.inputs.test_case }}
         run: |
           # El comando asume que pasas el caso de prueba como argumento de filtro de Playwright/Serenity
           # Ajusta "npm test" según tu script en package.json
