@@ -5,7 +5,7 @@ Este repositorio contiene una prueba UI de login para el sitio ORANGE HRM Demo, 
 * validacion de mensaje de error cuando se ingresan credenciales incorrectas (@mensajeError)  
 * logout (@logout)  
 
-La ATM desarrollada con los siguientes frameworks:  
+La ATM esta desarrollada con los siguientes frameworks:  
 * Playwright  
 * Serenity JS  
 
@@ -19,13 +19,13 @@ Implementando el patron de diseño de pruebas automatizadas Screenplay.
 
 ## 🚀 Pipeline de Ejecucion en GibhubActions
 
-La configuracion permite ingresar los valores de usuario y contraseña y elegir el caso de prueba a ejecutar, al igual que elegir el caso de prueba a ejecutar.  
+La configuracion permite ingresar los valores de usuario y contraseña, al igual que elegir el caso de prueba a ejecutar.  
 
 
 Para instalar los requisitos en local:  
 
 Para instalar Node JS:  
-puede ir a la pagina https://nodejs.org/en/download y seguir las instrucciones de instalacion deacuerdo a sus sistema operativo.
+puede ir a la pagina https://nodejs.org/en/download y seguir las instrucciones de instalacion deacuerdo a su sistema operativo.
 
 Para instalar Playwright (desde consola de comandos win o linux):  
 npm init playwright@latest  
@@ -35,6 +35,6 @@ npm install --save-dev @serenity-js/core @serenity-js/console-reporter @serenity
 
 para ejecutar en local, puede descargar el repositorio y ejecutar los siguientes comandos:  
 
-TEST_USER="tester" TEST_PASS="tester123" npx playwright test --grep @mensajeError  
+TEST_USER="tester" TEST_PASS="tester123" npm test --grep @mensajeError  
 
-cambie los datos de tester, tester123 y @mensajeError por los datos deacuerdo a los resultados que espera.  
+cambie los datos de tester, tester123 y @mensajeError por los datos que considere, deacuerdo a los resultados que espera.  
