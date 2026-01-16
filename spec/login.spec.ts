@@ -7,8 +7,8 @@ import { invalidCredentialsmsn,validAccess } from './login/questions';
 
 describe('Orange HRM Login', () => {
 
-    const user = process.env.TEST_USER; 
-    const pass = process.env.TEST_PASS;
+    const user = process.env.TEST_USER || 'Admin'; 
+    const pass = process.env.TEST_PASS || 'admin123';
 
     describe('Login', () => {
         it('@loginExitoso Deberia ingresar con exito con credenciales Correctas', async ({ actor }) => {

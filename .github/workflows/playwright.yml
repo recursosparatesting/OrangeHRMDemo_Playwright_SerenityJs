@@ -5,14 +5,14 @@ on:
     branches: [ main ]
   workflow_dispatch:
     inputs:
-      login:
+      TEST_USER:
         description: 'Usuario para el login'
         required: true
-        default: 'usuario_default'
-      password:
+        default: 'Admin'
+      TEST_PASS:
         description: 'Password para el login'
         required: true
-        default: 'pass_default'
+        default: 'admin123'
       test_case:
         type: choice
         description: 'Caso de prueba específico (dejar vacío para todos)'
@@ -46,9 +46,9 @@ jobs:
 
       - name: Run Playwright + Serenity JS Tests
         env:
-          LOGIN: ${{ inputs.login || 'Admin'}}
-          PASSWORD: ${{ inputs.password|| 'admin123' }}
-          TEST_CASE: ${{ inputs.test_case  || '@loginExitoso' }}
+          LOGIN: ${{ github.event.inputs.TEST_USER || 'Admin'}}
+          PASSWORD: ${{ github.event.inputs.TEST_PASS|| 'admin123' }}
+          TEST_CASE: ${{ github.event.inputs.test_case  || '@loginExitoso' }}
         run: |
           npm test -- --grep "$TEST_CASE"
 
