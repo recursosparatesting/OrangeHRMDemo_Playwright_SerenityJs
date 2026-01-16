@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "report": "serenity-bdd run"
- },
+    "test" : "npx playwright test",
+    "report": "serenity-bdd run"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
