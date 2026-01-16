@@ -16,7 +16,7 @@ on:
       test_case:
         description: 'Caso de prueba específico (dejar vacío para todos)'
         required: false
-        default: ''
+        default: '@loginExitoso'
 
 jobs:
   test:
@@ -39,10 +39,9 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright + Serenity JS Tests
-        # Priorizamos los inputs manuales; si no existen (es un push), usamos secretos o valores fijos
         env:
-          LOGIN: ${{ github.event.inputs.login || 'usuario_fijo_push' }}
-          PASSWORD: ${{ github.event.inputs.password || 'password_fijo_push' }}
+          LOGIN: ${{ github.event.inputs.login || 'Admin' }}
+          PASSWORD: ${{ github.event.inputs.password || 'admin123' }}
           TEST_CASE: ${{ github.event.inputs.test_case }}
         run: |
           # El comando asume que pasas el caso de prueba como argumento de filtro de Playwright/Serenity
@@ -68,4 +67,4 @@ jobs:
         with:
           name: serenity-bdd-report
           path: target/site/serenity/ # Ruta estándar de Serenity JS
-          retention-days: 30
+          retention-days: 90
