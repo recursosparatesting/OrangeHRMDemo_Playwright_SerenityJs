@@ -37,3 +37,6 @@ para ejecutar en local, puede descargar el repositorio y ejecutar los siguientes
 TEST_USER="tester" TEST_PASS="tester123" npm test --grep @mensajeError  
 
 cambie los datos de tester, tester123 y @mensajeError por los datos que considere, deacuerdo a los resultados que espera.  
+
+Ejecute el siguiente comando para que se genere el reporte de Serenity en ./target  
+npm run report  
