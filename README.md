@@ -5,12 +5,9 @@ Este repositorio contiene una prueba UI de login para el sitio ORANGE HRM Demo, 
 * validacion de mensaje de error cuando se ingresan credenciales incorrectas (@mensajeError)  
 * logout (@logout)  
 
-La ATM esta desarrollada con los siguientes frameworks:  
+La ATM implementa el patron de diseño para pruebas automatizadas Screenplay y esta desarrollada con los siguientes frameworks:  
 * Playwright  
 * Serenity JS  
-
-Implementando el patron de diseño de pruebas automatizadas Screenplay.  
-
 
 ## 📋 Requisitos  
 * node js  
@@ -19,10 +16,12 @@ Implementando el patron de diseño de pruebas automatizadas Screenplay.
 
 ## 🚀 Pipeline de Ejecucion en GibhubActions
 
-La configuracion permite ingresar los valores de usuario y contraseña, al igual que elegir el caso de prueba a ejecutar.  
+Cuando se realiza un push a la rama main, se ejecuta automaticamente el caso de prueba @loginExitoso.
+
+La configuracion de ejecución manual,  permite ingresar los valores de usuario y contraseña, al igual que elegir el caso de prueba a ejecutar.
 
 
-Para instalar los requisitos en local:  
+## 🚀 Para instalar los requisitos en local:  
 
 Para instalar Node JS:  
 puede ir a la pagina https://nodejs.org/en/download y seguir las instrucciones de instalacion deacuerdo a su sistema operativo.
