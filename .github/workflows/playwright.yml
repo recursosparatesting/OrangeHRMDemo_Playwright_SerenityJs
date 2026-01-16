@@ -53,16 +53,15 @@ jobs:
           npm test -- --grep "$TEST_CASE"
 
       - name: Generate Serenity BDD Report
-        # Se ejecuta incluso si los tests fallan para ver el reporte del error
         if: always()
-        run: npm run report # Ajusta al comando que genera tu reporte (ej. serenity-bdd run)
+        run: npm run report 
 
       - name: Upload Playwright Reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
-          path: playwright-report/ # Ajusta según tu config de playwright
+          path: playwright-report/ 
           retention-days: 30
 
       - name: Upload Serenity BDD Reports
@@ -70,5 +69,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: serenity-bdd-report
-          path: target/site/serenity/ # Ruta estándar de Serenity JS
+          path: target/site/serenity/ 
           retention-days: 90
