@@ -46,8 +46,8 @@ jobs:
 
       - name: Run Playwright + Serenity JS Tests
         env:
-          LOGIN: ${{ inputs.login || 'usuario_default'}}
-          PASSWORD: ${{ inputs.password|| 'pass_default' }}
+          LOGIN: ${{ inputs.login || 'Admin'}}
+          PASSWORD: ${{ inputs.password|| 'admin123' }}
           TEST_CASE: ${{ inputs.test_case  || '@loginExitoso' }}
         run: |
           npm test -- --grep "$TEST_CASE"
