@@ -1,0 +1,40 @@
+# Playwright + Serenity Js multibrowser  
+Este repositorio contiene una prueba UI de login para el sitio ORANGE HRM Demo, que contiene 3 casos de prueba:  
+
+* login exitoso (@loginExitoso)  
+* validacion de mensaje de error cuando se ingresan credenciales incorrectas (@mensajeError)  
+* logout (@logout)  
+
+La ATM desarrollada con los siguientes frameworks:  
+* Playwright  
+* Serenity JS  
+
+Implementando el patron de diseño de pruebas automatizadas Screenplay.  
+
+
+## 📋 Requisitos  
+* node js  
+* playwright  
+* Serenity JS  
+
+## 🚀 Pipeline de Ejecucion en GibhubActions
+
+La configuracion permite ingresar los valores de usuario y contraseña y elegir el caso de prueba a ejecutar, al igual que elegir el caso de prueba a ejecutar.  
+
+
+Para instalar los requisitos en local:  
+
+Para instalar Node JS:  
+puede ir a la pagina https://nodejs.org/en/download y seguir las instrucciones de instalacion deacuerdo a sus sistema operativo.
+
+Para instalar Playwright (desde consola de comandos win o linux):  
+npm init playwright@latest  
+
+Para instalar SerenityJS (desde consola de comandos win o linux):  
+npm install --save-dev @serenity-js/core @serenity-js/console-reporter @serenity-js/playwright @serenity-js/playwright-test @serenity-js/rest @serenity-js/web @serenity-js/serenity-bdd  
+
+para ejecutar en local, puede descargar el repositorio y ejecutar los siguientes comandos:  
+
+TEST_USER="tester" TEST_PASS="tester123" npx playwright test --grep @mensajeError  
+
+cambie los datos de tester, tester123 y @mensajeError por los datos deacuerdo a los resultados que espera.  
