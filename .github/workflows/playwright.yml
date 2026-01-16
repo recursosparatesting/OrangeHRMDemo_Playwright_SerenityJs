@@ -1,27 +1,71 @@
-name: Playwright Tests
+name: Login Orange HRM Demo con Playwright y Serenity JS
+
 on:
   push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      login:
+        description: 'Usuario para el login'
+        required: true
+        default: 'Admin'
+      password:
+        description: 'Password para el login'
+        required: true
+        default: 'admin123'
+      test_case:
+        description: 'Caso de prueba específico (dejar vacío para todos)'
+        required: false
+        default: ''
+
 jobs:
   test:
-    timeout-minutes: 60
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: lts/*
-    - name: Install dependencies
-      run: npm ci
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
-    - name: Run Playwright tests
-      run: npx playwright test
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright + Serenity JS Tests
+        # Priorizamos los inputs manuales; si no existen (es un push), usamos secretos o valores fijos
+        env:
+          LOGIN: ${{ github.event.inputs.login || 'usuario_fijo_push' }}
+          PASSWORD: ${{ github.event.inputs.password || 'password_fijo_push' }}
+          TEST_CASE: ${{ github.event.inputs.test_case }}
+        run: |
+          # El comando asume que pasas el caso de prueba como argumento de filtro de Playwright/Serenity
+          # Ajusta "npm test" según tu script en package.json
+          npm test -- --grep "$TEST_CASE"
+
+      - name: Generate Serenity BDD Report
+        # Se ejecuta incluso si los tests fallan para ver el reporte del error
+        if: always()
+        run: npm run report # Ajusta al comando que genera tu reporte (ej. serenity-bdd run)
+
+      - name: Upload Playwright Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/ # Ajusta según tu config de playwright
+          retention-days: 30
+
+      - name: Upload Serenity BDD Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: serenity-bdd-report
+          path: target/site/serenity/ # Ruta estándar de Serenity JS
+          retention-days: 30
