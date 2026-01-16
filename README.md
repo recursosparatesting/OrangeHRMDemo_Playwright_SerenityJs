@@ -40,3 +40,4 @@ cambie los datos de tester, tester123 y @mensajeError por los datos que consider
 
 Ejecute el siguiente comando para que se genere el reporte de Serenity en ./target  
 npm run report  
+
